@@ -2,6 +2,7 @@ module.exports = {
     env: {
         browser: true,
         es2021: true,
+        node: true
     },
     'extends': [
         'eslint:recommended',
@@ -28,6 +29,8 @@ module.exports = {
                 'allowTemplateLiterals': true
             }
         ],
+        '@typescript-eslint/no-explicit-any': 'off',
+        'react/display-name': 'off',
         '@typescript-eslint/semi': ['warn'],
         '@typescript-eslint/no-unused-vars': ['warn'],
         'semi': [2, 'always'],
@@ -50,6 +53,7 @@ module.exports = {
     },
     globals: {
         __IS_DEV__: true,
+        module: true
     },
 };
 
