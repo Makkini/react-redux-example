@@ -15,9 +15,9 @@ export const TestCard = memo((props: TestCardProps) => {
         <>
             <div className={classNames(cls.TestCard, {}, [className])}>
                 <div className={cls.TestInfo}>
-                    <Text title={'Тест 1'} />
-                    <Text title={'03.06.2023'} />
-                    <Text title={'5'} />
+                    <Text className={cls.TestText} title={'Тест 1'} />
+                    <Text className={cls.TestText} title={'03.06.2023'} />
+                    <Text className={cls.TestText} title={'5'} />
                 </div>
                 <div className={cls.TestActions} >
                     <Icon className={cls.icon} Svg={deleteIcon}/>
