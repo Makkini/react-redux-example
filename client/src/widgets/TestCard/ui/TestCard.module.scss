@@ -1,0 +1,30 @@
+.TestCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  height: 50px;
+}
+
+.TestInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+
+}
+
+.TestActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon {
+  fill: var(--primary-color);
+  cursor: pointer;
+}
+
+
+
+
