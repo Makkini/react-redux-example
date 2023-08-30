@@ -1,8 +1,9 @@
-const Router = require('express')
-const router = new Router()
+const express = require('express');
+const router = express.Router();
+const answersController = require('../controllers/answersController')
 
-router.post('/answers/answer_id') //ответить
-router.get('/answers/:test_id') //получить ответы пользователя на тест по ID теста
+router.post('/answer_id', answersController.answerHandler) //ответить
+router.get('/:test_id', answersController.getUserAnswersByTestId) //получить ответы пользователя на тест по ID теста
 
 
 module.exports = router

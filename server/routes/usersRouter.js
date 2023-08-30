@@ -1,24 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
-router.post('/users/registration', (req, res) => {
-    // Обработка регистрации пользователя
-});
+const usersController = require('../controllers/usersController')
 
-router.post('/users/login', (req, res) => {
-    // Обработка входа пользователя
-});
 
-router.get('/users/refresh', (req, res) => {
-    res.json({ message: 'working' }); // Отправка JSON-ответа
-});
+router.post('/registration', usersController.registration);
 
-router.get('/users/activate/:link', (req, res) => {
-    res.json({ message: 'working' }); // Отправка JSON-ответа
-});
+router.post('/login', usersController.login);
 
-router.post('/users/password', (req, res) => {
-    // Обработка сброса пароля
-});
+router.get('/refresh', usersController.refreshToken);
+
+router.get('/activate/:link', usersController.activateLink);
+
+router.post('/password', usersController.refreshPassword);
 
 module.exports = router;

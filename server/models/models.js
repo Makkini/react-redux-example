@@ -12,13 +12,12 @@ const Test = sequelize.define('Test',{
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     title: {type: DataTypes.STRING},
     author_id: {type: DataTypes.INTEGER, unique: true},
-    created_at: {type: DataTypes.DATE}
 })
 
 const Question = sequelize.define('Question',{
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     description: {type: DataTypes.STRING},
-    type: {type: DataTypes.ENUM('checkbox, radio-button, input'), allowNull: false},
+    type: {type: DataTypes.ENUM('checkbox', 'radio-button', 'input'), allowNull: false},
     order: {type: DataTypes.INTEGER},
     test_id: {type: DataTypes.INTEGER}
 })
@@ -34,7 +33,7 @@ const Completed_test = sequelize.define('Completed_test',{
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     user_id: {type: DataTypes.INTEGER, unique: true},
     test_id: {type: DataTypes.INTEGER, unique: true},
-    right: {type: DataTypes.INTEGER},
+    right: {type: DataTypes.INTEGER},//количество верных ответов
     wrong: {type: DataTypes.INTEGER},
 })
 
