@@ -4,7 +4,7 @@ const answersRouter = require('./answersRouter')
 const testsRouter = require('./testsRouter')
 const usersRouter = require('./usersRouter')
 
-router.use('/users', usersRouter)
+router.use('/user', usersRouter)
 router.use('/tests', testsRouter)
 router.use('/answers', answersRouter)
 

@@ -4,9 +4,9 @@ class testsController {
 
     async createTest(req, res) {
         try {
-            const { title, questions } = req.body;
+            const { title, questions, author_id } = req.body;
 
-            const test = await Test.create({ title });
+            const test = await Test.create({ title, author_id });
 
             for (const questionData of questions) {
                 const { description, type, order } = questionData;
@@ -32,32 +32,32 @@ class testsController {
             const { id } = req.params;
             const test = await Test.findByPk(id);
             if (!test) {
-                return res.status(404).json({ error: 'Test not found 1' });
+                return res.status(404).json({ error: 'Test not found' });
             }
             return res.json(test);
         } catch (error) {
             console.error(error);
-            return res.status(500).json({ error: 'Failed to retrieve test' });
+            return res.status(500).json({ error: 'Failed to retrieve test 1' });
         }
     }
 
     async getAllTestsByUserId(req, res) {
         try {
-            const { userId } = req.query;
-            if (!userId) {
-                return res.status(400).json({ error: 'User ID is required' });
+            const { author_id } = req.query;
+            if (!author_id) {
+                return res.status(400).json({ error: 'Author ID is required' });
             }
 
             const tests = await Test.findAll({
                 where: {
-                    userId: userId
+                    author_id: author_id
                 }
             });
 
             return res.json(tests);
         } catch (error) {
             console.error(error);
-            return res.status(500).json({ error: 'Failed to retrieve tests' });
+            return res.status(500).json({ error: 'Failed to retrieve tests 2' });
         }
     }
 
