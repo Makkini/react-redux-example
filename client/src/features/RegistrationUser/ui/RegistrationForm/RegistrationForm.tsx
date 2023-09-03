@@ -2,48 +2,48 @@ import {memo, useCallback} from 'react';
 import {classNames} from '@/shared/lib/classNames/classNames';
 import {Button, ButtonTheme} from '@/shared/ui/Button/Button';
 import {Input} from '@/shared/ui/Input/Input';
+import cls from './RegistrationForm.module.scss';
 
-import cls from './LoginForm.module.scss';
 import {useDispatch, useSelector} from 'react-redux';
-import {loginActions} from '../../model/slice/loginSlice';
-import {getLoginState} from '../../model/selectors/getLoginState/getLoginState';
-import {loginByUsername} from '../../model/services/loginByUsername/loginByUsername';
+import {getRegistrationState} from '../../model/selectors/getRegistrationState/getRegistrationState';
+import {registrationByUsername} from '../../model/services/registrationByUsername/registrationByUsername';
 import {Text, TextTheme} from '@/shared/ui/Text/Text';
+import {registrationActions} from '../../model/slice/registrationSlice';
 
-export interface LoginFormProps {
+export interface RegistrationFormProps {
     className?: string;
     onSuccess?: () => void;
 }
 
 
-const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
+const RegistrationForm = memo(({ className, onSuccess }: RegistrationFormProps) => {
 
     const dispatch = useDispatch();
-    const {email, password, error, isLoading} = useSelector(getLoginState);
+    const {email, password, isLoading, error} = useSelector(getRegistrationState);
     const onChangeUsername = useCallback((value: string)=> {
-        dispatch(loginActions.setUsername(value));
+        dispatch(registrationActions.setUsernameReg(value));
     }, [dispatch]);
 
     const onChangePassword = useCallback((value: string)=> {
-        dispatch(loginActions.setPassword(value));
+        dispatch(registrationActions.setPasswordReg(value));
     }, [dispatch]);
 
-    const onLoginClick = useCallback(async () => {
+    const onRegClick = useCallback(async () => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        const result = await dispatch(loginByUsername({ email, password }));
+        const result = await dispatch(registrationByUsername({ email, password }));
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess();
-            dispatch(loginActions.setPassword(''));
-            dispatch(loginActions.setUsername(''));
+            dispatch(registrationActions.setPasswordReg(''));
+            dispatch(registrationActions.setUsernameReg(''));
         }
     }, [onSuccess, dispatch, email, password]);
 
     return (
 
-        <div className={classNames(cls.LoginForm, {}, [className])}>
-            <Text title={'Форма авторизации'} />
-            {error && <Text text={'Неверный логин или пароль'} theme={TextTheme.ERROR}/>}
+        <div className={classNames(cls.RegistrationForm, {}, [className])}>
+            <Text title={'Форма регистрации'} />
+            {error && <Text text={'Некорректные email или пароль'} theme={TextTheme.ERROR}/>}
             <Input
                 autofocus
                 type="text"
@@ -61,14 +61,14 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
             />
             <Button
                 theme={ButtonTheme.OUTLINE}
-                className={cls.loginBtn}
-                onClick={onLoginClick}
+                className={cls.regBtn}
+                onClick={onRegClick}
                 disabled={isLoading}
             >
-                {'Войти'}
+                {'Зарегистрироваться'}
             </Button>
         </div>
     );
 });
 
-export default LoginForm;
+export default RegistrationForm;

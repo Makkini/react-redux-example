@@ -13,7 +13,7 @@ const MainPage = memo((props: MainPageProps) => {
         <div className={classNames(cls.MainPage, {}, [className])}>
             <Text size={TextSize.L} title={'Мои тесты'} />
             <div className={cls.TestAbout} >
-                <Text size={TextSize.M} title={'Название'} />
+                <Text size={TextSize.M}  title={'Название'} />
                 <Text size={TextSize.M} title={'Дата создания'} />
                 <Text size={TextSize.M} title={'Кол-во участников'} />
                 <Text size={TextSize.M} title={'Действия'} />
